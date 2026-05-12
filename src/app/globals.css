@@ -17,3 +17,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes slideUp {
+  /*
+  Function for animating an effect of "fade in & slide up".
+  */
+
+  0% {
+    opacity: 0;  /* invisible */
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1; /* full visibility */
+    transform: translateY(0);
+  }
+}
+
+.animate-slide {
+  animation: slideUp 0.6s ease-in forwards;
+  animation-delay: 0.2s;
+}
