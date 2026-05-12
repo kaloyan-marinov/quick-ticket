@@ -13,6 +13,32 @@ And all the pages are ... React components.
 
 
 
+```shell
+2026-05-12-22-53-36-CET quick-ticket $ git commit -m "create a migration script and apply it = run \`npx prisma migrate dev --name first_migration\`"
+[main 22db976] create a migration script and apply it = run `npx prisma migrate dev --name first_migration`
+ 2 files changed, 15 insertions(+)
+ create mode 100644 prisma/migrations/20260512205335_first_migration/migration.sql
+ create mode 100644 prisma/migrations/migration_lock.toml
+2026-05-12-22-55-40-CET quick-ticket $ npx prisma generate
+Loaded Prisma config from prisma.config.ts.
+
+Prisma config detected, skipping environment variable loading.
+Prisma schema loaded from prisma/schema.prisma
+
+✔ Generated Prisma Client (6.19.3) to ./src/generated/prisma in 21ms
+```
+
+
+<br />
+<br />
+<br />
+<hr />
+<br />
+<br />
+<br />
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
