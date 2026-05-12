@@ -1,3 +1,18 @@
+# Background
+
+... Next.js uses «file-based routing».
+[What that means is that]
+the [`src/app`] folder is ... your «routing folder»
+[which in turn means that]
+the [`src/app/page.tsx`] is your homepage;
+if you wanted, let's say, [a] `/about` [URL],
+you would create an [`src/app/about`] folder with a `page.tsx` in that ... folder
+and that would ... show up at [the] `/about` [URL].
+
+And all the pages are ... React components.
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
