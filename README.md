@@ -17,6 +17,14 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+```shell
+cp \
+    .env.template \
+    .env
+```
+
+Edit the `.env` file by filling out the values for all variables therein.
+
 First, run the development server:
 
 ```bash
