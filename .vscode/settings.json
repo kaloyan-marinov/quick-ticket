@@ -1,0 +1,22 @@
+{
+    "editor.rulers": [
+        88, 100
+    ],
+
+    // Controls if suggestions should be accepted the 'Enter' key
+    // - in addition to via the 'Tab' key.
+    // Helps to avoid ambiguity between inserting new lines or accepting suggestions.
+    "editor.acceptSuggestionOnEnter": "off",
+    // Controls if suggestions should be accepted via the ';' and ')' keys
+    // - in addition to via the 'Tab' key.
+    "editor.acceptSuggestionOnCommitCharacter": false,
+
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    }
+}
