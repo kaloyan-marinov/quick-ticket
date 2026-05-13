@@ -16,22 +16,39 @@ export async function createTicket(
   success: boolean;
   message: string;
 }> {
-  const subject = formData.get("subject") as string;
-  const description = formData.get("description") as string;
-  const priority = formData.get("priority") as string;
+  try {
+    throw new Error(
+      "Simulated error within the «server action» `createTicket` (for testing/learning purposes!)",
+    );
 
-  if (!subject || !description || !priority) {
-    const msg = "All fields are required";
-    Sentry.captureMessage(`Validation Error: ${msg}`, "warning");
+    const subject = formData.get("subject") as string;
+    const description = formData.get("description") as string;
+    const priority = formData.get("priority") as string;
+
+    if (!subject || !description || !priority) {
+      const msg = "All fields are required";
+      Sentry.captureMessage(`Validation Error: ${msg}`, "warning");
+
+      return {
+        success: false,
+        message: msg,
+      };
+    }
+
+    return {
+      success: true,
+      message: "Ticket created successfully",
+    };
+  } catch (error) {
+    Sentry.captureException(error as Error, {
+      extra: {
+        formData: Object.fromEntries(formData.entries()),
+      },
+    });
 
     return {
       success: false,
-      message: msg,
+      message: "An error occurred while creating the ticket",
     };
   }
-
-  return {
-    success: true,
-    message: "Ticket created successfully",
-  };
 }
