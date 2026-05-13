@@ -7,6 +7,7 @@ This can be thought of as "the backend" for tickets.
 import * as Sentry from "@sentry/nextjs";
 import { prisma } from "@/db/prisma";
 import { revalidatePath } from "next/cache";
+import { logEvent } from "@/utils/sentry";
 
 export async function createTicket(
   prevState: {
@@ -25,7 +26,16 @@ export async function createTicket(
 
     if (!subject || !description || !priority) {
       const msg = "All fields are required";
-      Sentry.captureMessage(`Validation Error: ${msg}`, "warning");
+      logEvent(
+        msg,
+        "ticket",
+        {
+          subject,
+          description,
+          priority,
+        },
+        "warning",
+      );
 
       return {
         success: false,
@@ -41,13 +51,15 @@ export async function createTicket(
       },
     });
 
-    Sentry.addBreadcrumb({
-      category: "ticket",
-      message: `Ticket created: ${ticket.id}`,
-      level: "info",
-    });
-
-    Sentry.captureMessage(`Ticket was created successfully: ${ticket.id}`);
+    const msg = "Ticket created successfully";
+    logEvent(
+      `${msg}: ${ticket.id}`,
+      "ticket",
+      {
+        ticketId: ticket.id,
+      },
+      "info",
+    );
 
     /*
     revalidatePath("/tickets");
@@ -55,14 +67,19 @@ export async function createTicket(
 
     return {
       success: true,
-      message: "Ticket created successfully",
+      message: msg,
     };
   } catch (error) {
-    Sentry.captureException(error as Error, {
-      extra: {
+    logEvent(
+      "An error occurred while creating the ticket",
+      "ticket",
+      {
         formData: Object.fromEntries(formData.entries()),
       },
-    });
+
+      "error",
+      error,
+    );
 
     return {
       success: false,
