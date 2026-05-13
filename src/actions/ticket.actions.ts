@@ -41,7 +41,6 @@ export async function createTicket(
       },
     });
 
-    /*
     Sentry.addBreadcrumb({
       category: "ticket",
       message: `Ticket created: ${ticket.id}`,
@@ -50,6 +49,7 @@ export async function createTicket(
 
     Sentry.captureMessage(`Ticket was created successfully: ${ticket.id}`);
 
+    /*
     revalidatePath("/tickets");
     */
 
