@@ -29,6 +29,11 @@ Prisma schema loaded from prisma/schema.prisma
 ```
 
 
+A «server action» is a file that, as the name suggests, run on the server.
+HTML `<form>` elements can submit directly to a «server action».
+
+
+
 <br />
 <br />
 <br />
