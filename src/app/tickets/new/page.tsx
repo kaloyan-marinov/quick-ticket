@@ -21,14 +21,12 @@ const NewTicketPage = () => {
             type="text"
             name="subject"
             placeholder="Subject"
-            required
           />
           <textarea
             className="w-full border border-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             name="description"
             placeholder="Describe your issue"
             rows={4}
-            required
           />
           <select
             className="w-full border border-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700"
