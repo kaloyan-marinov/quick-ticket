@@ -5,6 +5,8 @@ This can be thought of as "the backend" for tickets.
 */
 
 import * as Sentry from "@sentry/nextjs";
+import { prisma } from "@/db/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function createTicket(
   prevState: {
@@ -17,10 +19,6 @@ export async function createTicket(
   message: string;
 }> {
   try {
-    throw new Error(
-      "Simulated error within the «server action» `createTicket` (for testing/learning purposes!)",
-    );
-
     const subject = formData.get("subject") as string;
     const description = formData.get("description") as string;
     const priority = formData.get("priority") as string;
@@ -34,6 +32,26 @@ export async function createTicket(
         message: msg,
       };
     }
+
+    const ticket = await prisma.ticket.create({
+      data: {
+        subject,
+        description,
+        priority,
+      },
+    });
+
+    /*
+    Sentry.addBreadcrumb({
+      category: "ticket",
+      message: `Ticket created: ${ticket.id}`,
+      level: "info",
+    });
+
+    Sentry.captureMessage(`Ticket was created successfully: ${ticket.id}`);
+
+    revalidatePath("/tickets");
+    */
 
     return {
       success: true,
