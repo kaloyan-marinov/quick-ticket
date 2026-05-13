@@ -22,7 +22,7 @@ export async function createTicket(
 
   if (!subject || !description || !priority) {
     const msg = "All fields are required";
-    Sentry.captureMessage(`Validation Error: ${msg}`);
+    Sentry.captureMessage(`Validation Error: ${msg}`, "warning");
 
     return {
       success: false,
