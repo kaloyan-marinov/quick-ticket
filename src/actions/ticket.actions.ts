@@ -4,6 +4,8 @@
 This can be thought of as "the backend" for tickets.
 */
 
+import * as Sentry from "@sentry/nextjs";
+
 export async function createTicket(
   prevState: {
     success: boolean;
@@ -19,11 +21,12 @@ export async function createTicket(
   const priority = formData.get("priority") as string;
 
   if (!subject || !description || !priority) {
-    console.log("All fields are required");
+    const msg = "All fields are required";
+    Sentry.captureMessage(`Validation Error: ${msg}`);
 
     return {
       success: false,
-      message: "All fields are required",
+      message: msg,
     };
   }
 

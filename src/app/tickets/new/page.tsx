@@ -15,6 +15,9 @@ const NewTicketPage = () => {
         <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">
           Submit a Support Ticket
         </h1>
+        {state.message && !state.success && (
+          <p className="text-red-500 mb-4 text-center">{state.message}</p>
+        )}
         <form action={formAction} className="space-y-4 text-gray-700">
           <input
             className="w-full border border-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
