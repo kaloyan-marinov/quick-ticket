@@ -1,5 +1,5 @@
 import { getTicketById } from "@/actions/ticket.actions";
-
+import { logEvent } from "@/utils/sentry";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPriorityClass } from "@/utils/ui";
@@ -15,9 +15,17 @@ const TicketDetailsPage = async (props: {
     notFound();
   }
 
+  logEvent(
+    "Viewing ticket details",
+    "ticket",
+    {
+      ticketId: ticket.id,
+    },
+    "info",
+  );
+
   return (
     <div className="min-h-screen bg-blue-50 p-8">
-      hello
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow border border-gray-200 p-8 space-y-6">
         <h1 className="text-3xl font-bold text-blue-600">{ticket.subject}</h1>
 
