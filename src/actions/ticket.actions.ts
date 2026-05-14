@@ -87,3 +87,34 @@ export async function createTicket(
     };
   }
 }
+
+export async function getTickets() {
+  try {
+    const tickets = await prisma.ticket.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    logEvent(
+      "Fetched ticket list",
+      "ticket",
+      {
+        count: tickets.length,
+      },
+      "info",
+    );
+
+    return tickets;
+  } catch (error) {
+    logEvent(
+      "Error fetching tickets",
+      "ticket",
+      {}, // = do NOT send any data
+      "error",
+      error,
+    );
+
+    return [];
+  }
+}
