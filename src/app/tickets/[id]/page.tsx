@@ -2,6 +2,7 @@ import { getTicketById } from "@/actions/ticket.actions";
 
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getPriorityClass } from "@/utils/ui";
 
 const TicketDetailsPage = async (props: {
   params: Promise<{ id: string }>;
@@ -27,7 +28,7 @@ const TicketDetailsPage = async (props: {
 
         <div className="text-gray-700">
           <h2 className="text-lg font-semibold mb-2">Priority</h2>
-          <p>{ticket.priority}</p>
+          <p className={getPriorityClass(ticket.priority)}>{ticket.priority}</p>
         </div>
 
         <div className="text-gray-700">
