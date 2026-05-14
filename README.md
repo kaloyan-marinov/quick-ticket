@@ -41,6 +41,28 @@ don't have anything to do with specific pages
 
 
 
+W.r.t. authentication, you have a lot of different options:
+
+- you can use «Next Auth», which is very popular
+
+- you can use a library like `auth0-js`
+
+- you can use https://clerk.com/
+
+- you can put in place a custom authentication flow using JSON Web Tokens (JWTs)
+
+  - e.g. a package called `jose` makes it possible to create and sign JWTs
+
+  - `jose` is very similar to the `jsonwebtoken` package
+
+  - `bcrypt` can be used to encrypt passwords
+
+  - the JTW can be stored in [an `HttpOnly` cookie](
+      https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#httponly
+    )
+
+
+
 <br />
 <br />
 <br />
