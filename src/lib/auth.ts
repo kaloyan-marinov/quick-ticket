@@ -97,3 +97,15 @@ export async function getAuthCookie() {
   const token = cookieStore.get(cookieName);
   return token?.value; // The `?` here means "optional chaining".
 }
+
+// Remove token cookie
+export async function removeAuthCookie() {
+  try {
+    const cookieStore = await cookies();
+    cookieStore.delete(cookieName);
+  } catch (error) {
+    const msg = "Failed to remove the auth cookie";
+
+    logEvent(msg, "auth", {}, "error", error);
+  }
+}
