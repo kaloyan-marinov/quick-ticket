@@ -78,6 +78,41 @@ W.r.t. authentication, you have a lot of different options:
 
 
 
+  > low-level functions:
+  > 
+  > ```ts
+  > signAuthToken
+  > /* Generate, encrypt, and sign token with secret */
+  > 
+  > verifyAuthToken
+  > /* Decrypt and verify token */
+  > 
+  > setAuthCookie
+  > /* Set token to cookie */
+  > 
+  > getAuthCookie
+  > /* Get token from cookie */
+  > 
+  > removeAuthCookie
+  > /* Remove token cookie */
+  > ```
+  > 
+  > 
+  > 
+  > high-level functions:
+  > 
+  > ```ts
+  > registerUser
+  > 
+  > loginUser
+  > 
+  > logoutUser
+  > 
+  > getCurrentUser
+  > ```
+
+
+
 <br />
 <br />
 <br />
