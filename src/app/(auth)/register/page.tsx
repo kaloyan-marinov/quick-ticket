@@ -8,17 +8,40 @@ The URL will just be `/register`.
 
 "use client";
 
+import { useActionState, useEffect } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/actions/auth.actions";
+
 const RegisterPage = () => {
+  const initialState = {
+    success: false,
+    message: "",
+  };
+  const [state, formAction] = useActionState(registerUser, initialState);
+
+  // Re-direct to after successful submission;
+  // show a toast in case of an error.
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.success) {
+      toast.success("Registration successful!");
+
+      router.push("/tickets");
+      router.refresh();
+    } else if (state.message) {
+      toast.error(state.message);
+    }
+  }, [state, router]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-50 px-4">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8 border border-gray-200">
         <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">
           Register
         </h1>
-        <form
-          className="space-y-4 text-gray-700"
-          action={() => console.log("hello")}
-        >
+        <form className="space-y-4 text-gray-700" action={formAction}>
           <input
             className="w-full border border-gray-200 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
             type="text"
