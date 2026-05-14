@@ -61,6 +61,18 @@ W.r.t. authentication, you have a lot of different options:
       https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#httponly
     )
 
+- this project puts in a place the following custom authentication flow:
+
+  1. Log in with credentials
+
+  2. Server checks credentials
+
+  3. Store the token in cookie. You can also use local storage
+
+  4. Send it with future requests
+
+  5. Server verifies token and makes sure it is not altered
+
 
 
 <br />
