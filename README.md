@@ -34,6 +34,13 @@ HTML `<form>` elements can submit directly to a «server action».
 
 
 
+`src/components/` contains UI components, which
+are common
+and
+don't have anything to do with specific pages
+
+
+
 <br />
 <br />
 <br />
