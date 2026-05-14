@@ -90,3 +90,10 @@ export async function setAuthCookie(token: string) {
     );
   }
 }
+
+// Get token from cookie
+export async function getAuthCookie() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(cookieName);
+  return token?.value; // The `?` here means "optional chaining".
+}
