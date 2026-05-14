@@ -34,8 +34,8 @@ HTML `<form>` elements can submit directly to a «server action».
 
 
 
-`src/components/` contains UI components, which
-are common
+`src/components/` contains UI components,
+which are common
 and
 don't have anything to do with specific pages
 
@@ -63,15 +63,18 @@ W.r.t. authentication, you have a lot of different options:
 
 - this project puts in a place the following custom authentication flow:
 
-  1. Log in with credentials
+  1. Log in with `(email, password)`
 
-  2. Server checks credentials
+  2. Server checks those credentials
 
-  3. Store the token in cookie. You can also use local storage
+  3. Create a JWT (which is cryptographically signed).
+     Store it in cookie (and[/or] store it also in [the client's = the web browser's] «local storage».
 
-  4. Send it with future requests
+  4. The client sends the cookie as part of each future request
 
-  5. Server verifies token and makes sure it is not altered
+  5. The server verifies the token (within the cookie)
+     and
+     makes sure it has not been tampered with
 
 
 
