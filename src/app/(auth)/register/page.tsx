@@ -27,7 +27,6 @@ const RegisterPage = () => {
   useEffect(() => {
     if (state.success) {
       toast.success("Registration successful!");
-
       router.push("/tickets");
       router.refresh();
     } else if (state.message) {
