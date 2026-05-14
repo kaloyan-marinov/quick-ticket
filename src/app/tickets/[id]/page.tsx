@@ -1,4 +1,6 @@
 import { getTicketById } from "@/actions/ticket.actions";
+
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const TicketDetailsPage = async (props: {
@@ -13,14 +15,34 @@ const TicketDetailsPage = async (props: {
   }
 
   return (
-    <>
-      details:
-      <ul>
-        <li>{ticket.id}</li>
-        <li>{ticket.subject}</li>
-        <li>{ticket.description}</li>
-      </ul>
-    </>
+    <div className="min-h-screen bg-blue-50 p-8">
+      hello
+      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow border border-gray-200 p-8 space-y-6">
+        <h1 className="text-3xl font-bold text-blue-600">{ticket.subject}</h1>
+
+        <div className="text-gray-700">
+          <h2 className="text-lg font-semibold mb-2">Description</h2>
+          <p>{ticket.description}</p>
+        </div>
+
+        <div className="text-gray-700">
+          <h2 className="text-lg font-semibold mb-2">Priority</h2>
+          <p>{ticket.priority}</p>
+        </div>
+
+        <div className="text-gray-700">
+          <h2 className="text-lg font-semibold mb-2">Created At</h2>
+          <p>{new Date(ticket.createdAt).toISOString()}</p>
+        </div>
+
+        <Link
+          href="/tickets"
+          className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        >
+          Back to Tickets
+        </Link>
+      </div>
+    </div>
   );
 };
 
