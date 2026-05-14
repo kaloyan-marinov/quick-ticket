@@ -98,6 +98,16 @@ W.r.t. authentication, you have a lot of different options:
 
 
 
+[What is Session Replay?](
+  https://docs.sentry.io/product/explore/session-replay/web/
+)
+
+A session replay is *not* a video recording. It's a video-like reproduction of a user session, built using the [rrweb recording library](
+  https://www.rrweb.io/
+). Replays are created from snapshots of your web application's DOM state (the browser's in-memory representation of HTML). When each snapshot is played back, you'll see a video-like recording of what the user did throughout their entire session. The user session includes any pageloads, refreshes, and navigations that happened while the user was on your site.
+
+
+
 <br />
 <br />
 <br />
