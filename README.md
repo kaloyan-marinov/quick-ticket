@@ -55,7 +55,7 @@ W.r.t. authentication, you have a lot of different options:
 
   - `jose` is very similar to the `jsonwebtoken` package
 
-  - `bcrypt` can be used to encrypt passwords
+  - `bcryptjs` can be used to encrypt passwords
 
   - the JTW can be stored in [an `HttpOnly` cookie](
       https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie#httponly
