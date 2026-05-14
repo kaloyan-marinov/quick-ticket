@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 // might actually NOT need the `cookies` package
+import { cookies } from "next/headers";
 import { logEvent } from "@/utils/sentry";
 
 const secret = new TextEncoder().encode(process.env.AUTH_SECRET);
@@ -60,5 +61,32 @@ export async function verifyAuthToken<T>(token: string): Promise<T> {
     );
 
     throw new Error(msg);
+  }
+}
+
+// Set token to cookie
+export async function setAuthCookie(token: string) {
+  try {
+    const cookieStore = await cookies();
+
+    cookieStore.set(cookieName, token, {
+      httpOnly: true, // prevents JavaScript from accessing the cookie, making it more secure
+      sameSite: "lax", // not strict to our domain, but it can only get set from top-level GET requests from other sites (there's no cross-site POST requests or anything like that)
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+  } catch (error) {
+    const msg = "Failed to set cookie";
+
+    logEvent(
+      msg,
+      "auth",
+      {
+        token,
+      },
+      "error",
+      error,
+    );
   }
 }
