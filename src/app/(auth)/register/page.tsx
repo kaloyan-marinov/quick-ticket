@@ -7,8 +7,15 @@ The URL will just be `/register`.
 */
 
 import RegisterForm from "./form";
+import { getCurrentUser } from "@/lib/current-user";
+import { redirect } from "next/navigation";
 
-const RegisterPage = () => {
+const RegisterPage = async () => {
+  const user = await getCurrentUser();
+  if (user) {
+    redirect("/tickets");
+  }
+
   return <RegisterForm />;
 };
 

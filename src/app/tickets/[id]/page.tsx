@@ -1,18 +1,31 @@
 import { getTicketById } from "@/actions/ticket.actions";
 import { logEvent } from "@/utils/sentry";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getPriorityClass } from "@/utils/ui";
+import { getCurrentUser } from "@/lib/current-user";
 
 const TicketDetailsPage = async (props: {
   params: Promise<{ id: string }>;
 }) => {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect("/login");
+  }
+
   const { id } = await props.params;
 
   const ticket = await getTicketById(id);
+  // console.log("ticket", ticket);
 
   if (!ticket) {
-    notFound();
+    // notFound();
+    return (
+      <div className="flex justify-center bg-yellow-200 space-x-20 p-4">
+        <h2>NOT FOUND: </h2>
+        <h2>TICKET ID {id}</h2>
+      </div>
+    );
   }
 
   logEvent(
