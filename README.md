@@ -1,4 +1,27 @@
-# Background
+# Background 1
+
+https://nextjs.org/docs
+
+> Next.js has two different routers:
+> 
+> - «App Router»: The newer router that supports new React features like «Server Components».
+> - «Pages Router»: The original router, still supported and being improved.
+> 
+> At the top of the sidebar, you'll notice a dropdown menu that allows you to switch between the «App Router» docs and the «Pages Router» docs.
+
+https://nextjs.org/docs#pre-requisite-knowledge
+
+> If you're new to React or need a refresher, we recommend starting with our [React Foundations course](https://nextjs.org/learn/react-foundations), and the [Next.js Foundations course](https://nextjs.org/learn/dashboard-app) that has you building an application as you learn.
+
+
+
+https://nextjs.org/learn/react-foundations#prerequisite-knowledge
+
+> If you're already familiar with React, you can skip to the [From React to Next.js](https://nextjs.org/learn/react-foundations/from-react-to-nextjs) chapter
+
+
+
+# Background 2
 
 ... Next.js uses «file-based routing».
 [What that means is that]
