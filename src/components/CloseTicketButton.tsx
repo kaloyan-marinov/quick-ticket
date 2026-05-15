@@ -16,7 +16,7 @@ const CloseTicketButton = (props: { ticketId: number; isClosed: boolean }) => {
   useEffect(() => {
     if (state.success) {
       toast.success(state.message);
-    } else if (state.message && !state.success) {
+    } else if (state.message) {
       toast.error(state.message);
     }
   }, [state]);

@@ -81,9 +81,7 @@ export async function createTicket(
       "info",
     );
 
-    /*
     revalidatePath("/tickets");
-    */
 
     return {
       success: true,

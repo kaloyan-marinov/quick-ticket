@@ -15,7 +15,6 @@ const TicketItem = (props: TicketItemProps) => {
 
   return (
     <div
-      key={ticket.id}
       className={`flex justify-between items-center bg-white rounded-lg shadow border border-gray-200 p-6 ${isClosed ? "opacity-50" : ""}`}
     >
       {/* Left Side */}
