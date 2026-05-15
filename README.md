@@ -72,7 +72,7 @@ https://nextjs.org/learn/react-foundations/server-and-client-components
 
 > In React, you choose where to place the «network boundary» in your component tree.
 > 
-> (
+> ---
 >
 > For example, you can:
 > 
@@ -82,7 +82,7 @@ https://nextjs.org/learn/react-foundations/server-and-client-components
 > - create a `Nav` component that is rendered on the <u>server</u> and shared across pages,
 >   but if you want to show an active state for links, you can render the list of `Links` on the <u>client</u>
 >
-> )
+> ---
 > 
 > Behind the scenes, the components are split into two «module graphs».
 > The «server module graph (or tree)» contains all the «Server Components» that are rendered on the <u>server</u>, and «the client module graph (or tree)» contains all «Client Components».
@@ -98,10 +98,14 @@ https://nextjs.org/learn/react-foundations/server-and-client-components
 > React uses this information to consolidate the «Server [Components]» and «Client Components»
 > [in order to ultimately] update the DOM on the «client».
 
-
-
+> Next.js uses «Server Components» by default - ... you don't have to take additional steps to adopt them
+>
+> to make [a particular React component into] a «Client Component»,
+> add the React `'use client'` directive at the top of the file [in which the component is defined]
+>
 > once you make changes and save, you should notice the browser automatically updates to reflect the change.
-> This feature is called [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh) It ... comes pre-configured with Next.js.
+> This feature is called [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh).
+> It ... comes pre-configured with Next.js.
 
 
 # Background 2
