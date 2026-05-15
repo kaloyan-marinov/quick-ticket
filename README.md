@@ -159,6 +159,64 @@ https://react.dev/reference/rsc/directives
 >
 > Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
 
+https://react.dev/reference/rsc/use-client
+
+Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
+
+Code that is marked for client evaluation is not limited to components. All code that is a part of the Client module sub-tree is sent to and run by the client.
+
+Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
+
+---
+
+[Modern React apps are] server-rendered by default. `'use client'` introduces a «network boundary» in the module dependency tree
+
+
+
+[W.r.t. components:]
+
+As in any React app, parent components pass data to child components. As they are rendered in different «environments», passing data from a Server Component to a Client Component requires extra consideration.
+
+Prop values passed from a Server Component to Client Component must be serializable.
+
+
+
+[More generally:]
+
+When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or supported serializable prop values to be passed to a Client Component.
+
+---
+
+here is a brief overview of the advantages and limitations to Server Components to determine when you need to mark something as client[-evaluated]
+
+For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
+
+Advantages of Server Components
+
+- Server Components can reduce the amount of code sent and run by the client.
+  Only Client modules are bundled and evaluated by the client.
+
+- Server Components benefit from running on the server.
+  They can access the local filesystem
+  and
+  may experience low latency for data fetches and network requests.
+
+Limitations of Server Components 
+
+- Server Components cannot support interaction
+  as event handlers must be registered and triggered by a client.
+  
+  For example, event handlers like `onClick` can only be defined in Client Components.
+
+- Server Components cannot use most Hooks.
+
+  When Server Components are rendered,
+  their output is essentially a list of components for the client to render.
+  Server Components do not persist in memory after render and cannot have their own state.
+
+
+
+
 # Background 3
 
 ... Next.js uses «file-based routing».
