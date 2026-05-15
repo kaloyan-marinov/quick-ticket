@@ -47,6 +47,30 @@ https://nextjs.org/learn/react-foundations/installation
 
 https://nextjs.org/learn/react-foundations/server-and-client-components
 
+> [Before explaining how «Server Components» and «Client Components»] work, it's helpful to be familiar with two foundational web concepts:
+> 
+> - The «environments» your application code can be executed in: the <u>server</u> and the <u>client</u>.
+> - The «network boundary» ...
+>
+> ---
+> 
+> In the context of web applications:
+> 
+> - The <u>server</u> refers to the computer in a data center that stores your application code, receives requests from a <u>client</u>, does some computation, and sends back an appropriate response [to that <u>client</u>].
+> 
+> - The <u>client</u> refers to the browser on a user’s device that sends a request to a <u>server</u>, [... receives a response from the <u>server</u>, and] then turns the response ... into an interface the user can interact with.
+> 
+> Each environment has its own set of capabilities and constraints. For example:
+> 
+> - by moving rendering and data fetching to the <u>server</u>, you can reduce the amount of code sent to the <u>client</u>, which can improve your application's performance
+> 
+> - to make your UI interactive [which is an example of managing user state], [the relevant code needs to be (sent by the <u>server</u> to and) executed] on the <u>client</u>
+>
+> ---
+>
+> The «network boundary» is a conceptual line that separates the different «environments».
+
+
 > once you make changes and save, you should notice the browser automatically updates to reflect the change.
 > This feature is called [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh) It ... comes pre-configured with Next.js.
 
