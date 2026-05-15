@@ -13,11 +13,17 @@ https://nextjs.org/docs#pre-requisite-knowledge
 
 > If you're new to React or need a refresher, we recommend starting with our [React Foundations course](https://nextjs.org/learn/react-foundations), and the [Next.js Foundations course](https://nextjs.org/learn/dashboard-app) that has you building an application as you learn.
 
-
-
 https://nextjs.org/learn/react-foundations#prerequisite-knowledge
 
 > If you're already familiar with React, you can skip to the [From React to Next.js](https://nextjs.org/learn/react-foundations/from-react-to-nextjs) chapter
+
+https://nextjs.org/learn/react-foundations/from-react-to-nextjs
+
+> When it comes to [building a new website or enhancing an existing one], ... You can gradually adopt React by using `<script>` tags ... to add small components to an existing website. However, many developers have found [it] valuable [for the end users and convenient for the developers] ... to write their whole frontend application in React.
+
+https://nextjs.org/learn/react-foundations/from-react-to-nextjs#from-react-to-nextjs
+
+> While React excels at building UI, ... There are ... newer React features, like «Server [Components]» and «Client Components», that require a framework... Next.js [is one such framework that] handles much of the setup and configuration [that are required in order to ...]
 
 
 
