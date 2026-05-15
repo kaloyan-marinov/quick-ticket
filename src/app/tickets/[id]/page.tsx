@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getPriorityClass } from "@/utils/ui";
 import { getCurrentUser } from "@/lib/current-user";
+import CloseTicketButton from "@/components/CloseTicketButton";
 
 const TicketDetailsPage = async (props: {
   params: Promise<{ id: string }>;
@@ -56,6 +57,8 @@ const TicketDetailsPage = async (props: {
           <h2 className="text-lg font-semibold mb-2">Created At</h2>
           <p>{new Date(ticket.createdAt).toISOString()}</p>
         </div>
+
+        <CloseTicketButton />
 
         <Link
           href="/tickets"
