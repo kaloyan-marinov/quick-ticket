@@ -58,7 +58,12 @@ const TicketDetailsPage = async (props: {
           <p>{new Date(ticket.createdAt).toISOString()}</p>
         </div>
 
-        <CloseTicketButton />
+        {ticket.status !== "Closed" && (
+          <CloseTicketButton
+            ticketId={ticket.id}
+            isClosed={ticket.status === "Closed"}
+          />
+        )}
 
         <Link
           href="/tickets"

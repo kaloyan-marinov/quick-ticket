@@ -4,7 +4,6 @@
 This can be thought of as "the backend" for tickets.
 */
 
-import * as Sentry from "@sentry/nextjs";
 import { prisma } from "@/db/prisma";
 import { revalidatePath } from "next/cache";
 import { logEvent } from "@/utils/sentry";
@@ -199,4 +198,80 @@ export async function getTicketById(id: string) {
 
     return null;
   }
+}
+
+export async function closeTicket(
+  prevState: {
+    success: boolean;
+    message: string;
+  },
+  formData: FormData,
+): Promise<{
+  success: boolean;
+  message: string;
+}> {
+  const ticketId = Number(formData.get("ticketId"));
+  if (!ticketId) {
+    const msg = "Ticket ID is required";
+    logEvent(msg, "ticket", {}, "warning");
+
+    return {
+      success: false,
+      message: msg,
+    };
+  }
+
+  const user = await getCurrentUser();
+  if (!user) {
+    const msg = "You must be logged in to close a ticket";
+
+    logEvent(msg, "ticket", {}, "warning");
+
+    return {
+      success: false,
+      message: msg,
+    };
+  }
+
+  const ticket = await prisma.ticket.findUnique({
+    where: {
+      id: ticketId,
+    },
+  });
+  if (!ticket || ticket.userId !== user.id) {
+    const msg = "Unauthorized attempt at closing a ticket";
+
+    logEvent(
+      msg,
+      "ticket",
+      {
+        ticketId,
+        userId: user.id,
+      },
+      "warning",
+    );
+
+    return {
+      success: false,
+      message: msg,
+    };
+  }
+
+  await prisma.ticket.update({
+    where: {
+      id: ticketId,
+    },
+    data: {
+      status: "Closed",
+    },
+  });
+
+  // Ensure that these paths have the updated ticket.
+  revalidatePath("/tickets");
+  revalidatePath(`/tickets/${ticketId}`);
+
+  return {
+    success: true,
+    message: "Ticket closed successfully",
+  };
 }
