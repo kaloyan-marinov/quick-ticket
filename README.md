@@ -25,6 +25,24 @@ https://nextjs.org/learn/react-foundations/from-react-to-nextjs#from-react-to-ne
 
 > While React excels at building UI, ... There are ... newer React features, like «Server [Components]» and «Client Components», that require a framework... Next.js [is one such framework that] handles much of the setup and configuration [that are required in order to ...]
 
+https://nextjs.org/learn/react-foundations/installation
+
+> ...
+>
+> 4. [You can delete `<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>`] because Next.js has a compiler that transforms JSX into valid JavaScript browsers can understand.
+>
+> ...
+> 
+> The only code left in the HTML file is JSX, so you can change the file type from `.html` to `.js` or `.jsx`.
+
+> Next.js uses [«file-based routing»]. This means that instead of using code to define the routes of your application, you can use folders and files.
+>
+> ...
+>
+> [`src/app/page.js` or `src/app/page.jsx` (or `app/page.js` or `app/page.jsx`)] will be the main page of your application [= it will be rendered when the client/browser accesses the `/` URL path]
+>
+> [`src/app/layout.js` or `src/app/layout.jsx` (or `app/layout.js` or `app/layout.jsx`)] is the main layout of your application. You can use it to add UI elements that are shared across all pages (e.g. navigation, footer, etc).
+
 
 
 # Background 2
