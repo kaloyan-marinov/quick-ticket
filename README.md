@@ -214,6 +214,60 @@ Limitations of Server Components
   their output is essentially a list of components for the client to render.
   Server Components do not persist in memory after render and cannot have their own state.
 
+https://react.dev/reference/rsc/use-server
+
+`'use server'` marks server-side functions that can be called from client-side code...
+We call these functions [Server Functions](https://react.dev/reference/rsc/server-functions).
+
+When calling a Server Function on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the Server Function returns a value, that value will be serialized and returned to the client.
+
+Server Functions are exposed server endpoints and can be called anywhere in client code.
+
+- Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
+
+- Server Functions should be called in a [Transition](https://react.dev/reference/react/useTransition). Server Functions passed to [`<form action>`](https://react.dev/reference/react-dom/components/form#props) or [`formAction`](https://react.dev/reference/react-dom/components/input#props) will automatically be called in a transition.
+
+- Server Functions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Functions typically process one action at a time and do not have a way to cache the return value.
+
+---
+
+Security considerations
+
+Arguments to Server Functions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
+
+In any Server Function, make sure to validate that the logged-in user is allowed to perform that action.
+
+---
+
+[Arguments and return values of server functions must be serializable]
+
+Since client code calls the Server Function over the network, any arguments passed will need to be serializable.
+
+Supported serializable return values are the same as [serializable props](https://react.dev/reference/rsc/use-client#serializable-types) for a boundary Client Component.
+
+To read a Server Function return value, you’ll need to `await` the promise returned.
+
+---
+
+Usages
+
+
+
+Calling a Server Function outside of `<form>`
+
+When using a Server Function outside a [form](https://react.dev/reference/react-dom/components/form), call the Server Function in a [Transition](https://react.dev/reference/react/useTransition), which allows you to display a loading indicator, ..., and handle unexpected errors.
+
+
+
+Server Functions in forms
+
+The most common use case of Server Functions will be calling functions that mutate data. On the browser, the [HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) is the traditional approach for a user to submit a mutation.
+
+When calling a Server Function in a form, React will supply the form’s [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) as the first argument to the Server Function.
+
+To update the UI based on the [return value] of a Server Function ..., use [`useActionState`](https://react.dev/reference/react/useActionState).
+
+Forms will automatically wrap Server Functions in transitions.
 
 
 
