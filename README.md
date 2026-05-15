@@ -70,6 +70,35 @@ https://nextjs.org/learn/react-foundations/server-and-client-components
 >
 > The «network boundary» is a conceptual line that separates the different «environments».
 
+> In React, you choose where to place the «network boundary» in your component tree.
+> 
+> (
+>
+> For example, you can:
+> 
+> - fetch data and render a user's posts on the <u>server</u> (using «Server Components»),
+>   then render the interactive `LikeButton` for each post on the <u>client</u> (using «Client Components»)
+> 
+> - create a `Nav` component that is rendered on the <u>server</u> and shared across pages,
+>   but if you want to show an active state for links, you can render the list of `Links` on the <u>client</u>
+>
+> )
+> 
+> Behind the scenes, the components are split into two «module graphs».
+> The «server module graph (or tree)» contains all the «Server Components» that are rendered on the <u>server</u>, and «the client module graph (or tree)» contains all «Client Components».
+> 
+> After «Server Components» are rendered, a special data format called the «React Server Component Payload (RSC)» is sent to the <u>client</u>. The «RSC payload» contains:
+> 
+> 1. The rendered result of «Server Components».
+> 
+> 2. Placeholders (or holes) for where «Client Components» should be rendered
+>    and
+>    references to their JavaScript files.
+> 
+> React uses this information to consolidate the «Server [Components]» and «Client Components»
+> [in order to ultimately] update the DOM on the «client».
+
+
 
 > once you make changes and save, you should notice the browser automatically updates to reflect the change.
 > This feature is called [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh) It ... comes pre-configured with Next.js.
