@@ -115,9 +115,39 @@ https://react.dev/reference/rsc/directives
 
 > Directives provide instructions to [bundlers compatible with React «Server Components»](https://react.dev/learn/creating-a-react-app#full-stack-frameworks).
 >
+> ---
+>
 > Source code directives:
 > - `'use client'` lets you mark what code runs on the client.
 > - `'use server'` marks server-side functions that can be called from client-side code.
+
+<u>from the preceding link:</u>
+
+> If you want to build a new app or website with React, we recommend starting with a framework.
+>
+> If your app has constraints not well-served by existing frameworks ... or you just want to learn the basics of a React app, you can [build a React app from scratch](https://react.dev/learn/build-a-react-app-from-scratch).
+>
+> ---
+>
+> These recommended [full-stack] frameworks support all ... the latest React features and take advantage of React’s architecture.
+>
+> Full-stack frameworks do not require a server.
+>
+> All the frameworks on this page support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and static-site generation ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). These apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service without a server. Additionally, these frameworks allow you to add server-side rendering on a per-route basis, when it makes sense for your use case.
+>
+> This allows you to start with a client-only app, and if your needs change later, you can opt-in to using server features on individual routes without rewriting your app. See your framework’s documentation for configuring the rendering strategy.
+>
+> ---
+>
+> ...
+>
+> [Next.js’s App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React’s architecture to enable full-stack React apps.
+>
+> ...
+>
+> [React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework.
+>
+> ...
 
 # Background 3
 
