@@ -148,6 +148,16 @@ https://react.dev/reference/rsc/directives
 > [React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework.
 >
 > ...
+>
+> ---
+>
+> [Which features make up the React team’s full-stack architecture vision?](https://react.dev/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision)
+>
+> Next.js’s App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md).
+>
+> Next.js’s App Router also integrates [data fetching with Suspense](https://react.dev/blog/2022/03/29/react-v18#suspense-in-data-frameworks).
+>
+> Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
 
 # Background 3
 
