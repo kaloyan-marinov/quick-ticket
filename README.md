@@ -43,6 +43,12 @@ https://nextjs.org/learn/react-foundations/installation
 >
 > [`src/app/layout.js` or `src/app/layout.jsx` (or `app/layout.js` or `app/layout.jsx`)] is the main layout of your application. You can use it to add UI elements that are shared across all pages (e.g. navigation, footer, etc).
 
+> This is because Next.js uses React «Server Components», a new feature that allows React to render on the server. «Server Components» don't support `useState`, so you'll need to use a «Client Component» instead.
+
+https://nextjs.org/learn/react-foundations/server-and-client-components
+
+> once you make changes and save, you should notice the browser automatically updates to reflect the change.
+> This feature is called [Fast Refresh](https://nextjs.org/docs/architecture/fast-refresh) It ... comes pre-configured with Next.js.
 
 
 # Background 2
