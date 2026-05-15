@@ -108,7 +108,18 @@ https://nextjs.org/learn/react-foundations/server-and-client-components
 > It ... comes pre-configured with Next.js.
 
 
+
 # Background 2
+
+https://react.dev/reference/rsc/directives
+
+> Directives provide instructions to [bundlers compatible with React «Server Components»](https://react.dev/learn/creating-a-react-app#full-stack-frameworks).
+>
+> Source code directives:
+> - `'use client'` lets you mark what code runs on the client.
+> - `'use server'` marks server-side functions that can be called from client-side code.
+
+# Background 3
 
 ... Next.js uses «file-based routing».
 [What that means is that]
