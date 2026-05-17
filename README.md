@@ -273,6 +273,112 @@ Forms will automatically wrap Server Functions in transitions.
 
 # Background 3
 
+https://react.dev/reference/rsc/server-components
+
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The "`use server"` directive is used for Server Functions.
+
+---
+
+Server Components are a new type of Component that renders ahead of time, before bundling, in an environment separate from your client app...
+
+This separate environment is the “server” ... React Server Components ... can run once at build time on your CI server, or they can be run for each request using a web server.
+
+---
+
+the Server Component ... is an async function
+
+\=
+
+Server Components ... allow you to `await` in render.
+
+---
+
+Usages:
+
+1. Server Components with a Server
+
+   Without Server Components, it’s common to fetch dynamic data on the client in an Effect
+   [which issues an HTTP request to a backend API (in order to access your project's data layer)]
+
+   ---
+
+   Server Components can also run on a web server during a request for a page, letting you access your data layer without having to build an API. They are rendered before your application is bundled, and can pass data and JSX as props to [child components].
+
+   The bundler then combines the data, rendered Server Components ... into a bundle. Optionally, that bundle can then be server-side rendered (SSR) to create the initial HTML for the page. When the page loads, the browser does not see the original [server components]; only the rendered output is sent to the client:
+
+   ```html
+   <div>
+    <span>By: The React Team</span>
+    <p>React 19 is...</p>
+   </div>
+   ```
+
+2. Adding interactivity to Server Components 
+
+   Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.
+
+   This works by first rendering [the parent component as a] Server Component, and then instructing the bundler to create a bundle for [all its child components that encapsulate mechanisms for interactivity and, due to that, are implemented as Client Components]. In the browser, [child] Client Components can see [dynamic data that was fetched within] the Server Components [in the form of props]:
+
+   ```html
+   <head>
+     <!-- the bundle for Client Components -->
+     <script src="bundle.js" />
+   </head>
+   <body>
+     <div>
+       <Expandable key={1}>
+         <p>this is the first note</p>
+       </Expandable>
+       <Expandable key={2}>
+         <p>this is the second note</p>
+       </Expandable>
+       <!--...-->
+     </div>
+   </body>
+   ```
+
+3. a new way to write Components using async/await
+
+   When you `await` in an async component, React will suspend and wait for the promise to resolve before resuming rendering. This works across server/client boundaries with streaming support for `Suspense`.
+
+   You can even create a promise on the server, and await it on the client...
+
+   > On the client:
+   >
+   > - async components are not supported
+   >
+   > - any promise,
+   >   which a client component has received as a prop,
+   >   has to be awaited with the `use` function from React
+
+4. fetch static content ... that will not change for the lifetime of the page
+
+   Without Server Components, it’s common to fetch static data on the client with an Effect:
+   [e.g. the client issues an HTTP request to a backend API for a static Markdown file;
+   downloads `marked` (= a library for parsing the Markdown content into HTML content)
+   and `sanitize-html` (= a library for sanitizing HTML content);
+   calls `sanitizeHtml(marked(markdownContent))` and renders its result]
+
+   ---
+
+   Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required.
+
+   you can render these components once at build time...
+
+   The rendered output can then be server-side rendered (SSR) to HTML and uploaded to a CDN. When the app loads, the client will not see the original [server component], or the expensive libraries for rendering the [Markdown content]. The client will only see the rendered output:
+   
+   ```html
+   <div>
+      <!-- html for markdown -->
+    </div>
+   ```
+
+   This means the content is visible during first page load, and the bundle does not include the expensive libraries needed to render the static content.
+
+
+
+# Background 4
+
 ... Next.js uses «file-based routing».
 [What that means is that]
 the [`src/app`] folder is ... your «routing folder»
