@@ -375,6 +375,49 @@ Usages:
 
    This means the content is visible during first page load, and the bundle does not include the expensive libraries needed to render the static content.
 
+https://react.dev/reference/rsc/server-functions
+
+Server Functions allow Client Components to call async functions executed on the server.
+
+> Note: Until September 2024, we referred to all Server Functions as “Server Actions”. If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
+
+---
+
+Usages:
+
+- Creating a Server Function from a Server Component 
+
+  Server Components can define Server Functions with the "use server" directive
+  [and such a function can be passed as a prop to a child Client Component]
+
+  When React renders the ... Server Component, it will create a reference to the [server] function, and pass that reference to the [child] Client Component. When [the user interacts with Child Component (e.g. clicks a button)], React will send a request to the server to execute the [server] function with the reference provided
+
+  ```js
+  // The reference looks like so:
+  //
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  ```
+
+- Importing Server Functions from Client Components 
+
+  Client Components can import Server Functions from files that use the `"use server"` directive
+
+  When the bundler builds [a] Client Component [that imports a server function and utilizes it], it will create a reference to the [server] function in the bundle. When [the user interacts with Child Component (e.g. clicks a button)], React will send a request to the server to execute the [server] function using the reference provided
+
+- Server Functions with Actions
+
+  [
+  look at this file's earlier paragraphs,
+  which include the following link: https://react.dev/reference/react/useTransition
+  ]
+
+- Server Functions with Form Actions
+
+  You can pass a Server Function to a Form to automatically submit the form to the server
+
+- You can add `useActionState` to access the [action] pending state, [the] last [returned] response, or to support progressive enhancement.
+
+
 
 
 # Background 4
